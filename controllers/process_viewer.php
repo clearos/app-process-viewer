@@ -66,18 +66,14 @@ class Process_Viewer extends ClearOS_Controller
         try {
             $data['processes'] = $this->process_manager->get_raw_data();
         } catch (Engine_Exception $e) {
-            $this->page->view_exception($e->get_message());
+            $this->page->view_exception($e);
             return;
         }
 
         // Load views
         //-----------
 
-        $this->page->set_title("Process Manager");  // FIXME: translate
-
-        $this->load->view('theme/header');
-        $this->load->view('summary', $data);
-        $this->load->view('theme/footer');
+        $this->page->view_form('summary', $data, 'Process Manager');
     }
 
     /**
@@ -102,7 +98,7 @@ class Process_Viewer extends ClearOS_Controller
             // $this->process_manager->kill($pid);
             $this->page->set_success('Process killed'); // FIXME: translate
         } catch (Engine_Exception $e) {
-            $this->page->view_exception($e->get_message());
+            $this->page->view_exception($e);
             return;
         }
 
