@@ -15,19 +15,4 @@ $app['category'] = lang('base_category_system');
 $app['subcategory'] = lang('base_subcategory_settings');
 
 // Packaging
-$app['core_dependencies'] = array('app-base-core', 'app-cron-core', 'ntpdate >= 4.2.4p8');
-$app['manifest'] = array( 
-   'app-date.cron' => array(
-        'target' => '/etc/cron.d/app-date',
-        'mode' => '0644',
-        'onwer' => 'root',
-        'group' => 'root',
-    ),
-
-   'timesync' => array(
-        'target' => '/usr/sbin/timesync',
-        'mode' => '0755',
-        'onwer' => 'root',
-        'group' => 'root',
-    ),
-);
+$app['core_dependencies'] = array('app-base-core');
