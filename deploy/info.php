@@ -26,6 +26,6 @@ $app['subcategory'] = lang('base_subcategory_settings');
 // Packaging
 /////////////////////////////////////////////////////////////////////////////
 
-$app['core_dependencies'] = array(
+$app['core_requires'] = array(
     'procps',
 );

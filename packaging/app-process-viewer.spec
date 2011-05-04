@@ -2,7 +2,7 @@
 Name: app-process-viewer
 Group: ClearOS/Apps
 Version: 5.9.9.0
-Release: 1
+Release: 1%{dist}
 Summary: System live process viewer
 License: GPLv3
 Packager: ClearFoundation
