@@ -20,7 +20,7 @@ $app['description'] = 'Displays processes running on your system.'; // FIXME: tr
 
 $app['name'] = lang('process_viewer_process_viewer');
 $app['category'] = lang('base_category_system');
-$app['subcategory'] = lang('base_subcategory_settings');
+$app['subcategory'] = lang('base_subcategory_resources');
 
 /////////////////////////////////////////////////////////////////////////////
 // Packaging
