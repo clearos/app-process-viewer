@@ -73,7 +73,7 @@ class Process_Viewer extends ClearOS_Controller
         // Load views
         //-----------
 
-        $this->page->view_form('summary', $data, 'Process Manager');
+        $this->page->view_form('summary', $data, lang('process_viewer_app_name'));
     }
 
     /**
