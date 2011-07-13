@@ -1,9 +1,9 @@
 
 Name: app-process-viewer
 Group: ClearOS/Apps
-Version: 5.9.9.0
+Version: 5.9.9.3
 Release: 1%{dist}
-Summary: System live process viewer
+Summary: Process Viewer
 License: GPLv3
 Packager: ClearFoundation
 Vendor: ClearFoundation
@@ -13,17 +13,17 @@ Requires: %{name}-core = %{version}-%{release}
 Requires: app-base
 
 %description
-Displays processes running on your system.
+Process Viewer description
 
 %package core
-Summary: System live process viewer - APIs and install
+Summary: Process Viewer - APIs and install
 Group: ClearOS/Libraries
 License: LGPLv3
 Requires: app-base-core
 Requires: procps
 
 %description core
-Displays processes running on your system.
+Process Viewer description
 
 This package provides the core API and libraries.
 
