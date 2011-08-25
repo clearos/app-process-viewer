@@ -40,6 +40,7 @@ echo form_open('process_viewer');
 // Buttons
 ///////////////////////////////////////////////////////////////////////////////
 
+/*
 echo button_set(
     array( 
         anchor_javascript('idle', 'Show Idle', 'high'),
@@ -47,6 +48,7 @@ echo button_set(
         anchor_javascript('pause', 'Pause', 'high')
     )
 );
+*/
 
 ///////////////////////////////////////////////////////////////////////////////
 // Form close
@@ -111,7 +113,7 @@ sort($items);
 ///////////////////////////////////////////////////////////////////////////////
 
 echo summary_table(
-    lang('dhcp_subnets'),
+    lang('process_viewer_processes'),
     $anchors,
     $headers,
     $items

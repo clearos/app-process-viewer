@@ -95,17 +95,13 @@ class Process_Viewer extends ClearOS_Controller
         //-------------------
 
         try {
-            // $this->process_manager->kill($pid);
-            $this->page->set_success('Process killed'); // FIXME: translate
+            $this->process_manager->kill($pid);
+            $this->page->set_status_updated();
+            redirect('/process_viewer');
         } catch (Engine_Exception $e) {
             $this->page->view_exception($e);
             return;
         }
-
-        // Redirect
-        //---------
-
-        redirect('process_viewer');
     }
 
     /**
@@ -118,20 +114,13 @@ class Process_Viewer extends ClearOS_Controller
 
     function kill($pid)
     {
-        // Load views
-        //-----------
+        $this->lang->load('process_viewer');
 
-        // FIXME: translate
-        $this->page->set_title('Processes');
+        $confirm_uri = '/app/process_viewer/destroy/' . $pid;
+        $cancel_uri = '/app/process_viewer';
+        $items = array(lang('process_viewer_process') . ' - ' . $pid);
 
-        $data['message'] = sprintf(lang('dhcp_confirm_delete'), $pid);
-        $data['ok_anchor'] = '/app/process_viewer/destroy/' . $pid;
-        $data['cancel_anchor'] = '/app/process_viewer';
-
-        $this->load->view('theme/header'); 
-        $this->load->view('theme/confirm', $data);
-        $this->load->view('theme/footer');
-
+        $this->page->view_confirm_delete($confirm_uri, $cancel_uri, $items);
     }
 
     /**

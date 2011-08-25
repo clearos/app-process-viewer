@@ -90,8 +90,8 @@ class Process_Manager extends Engine
     // C O N S T A N T S
     ///////////////////////////////////////////////////////////////////////////////
 
-    const COMMAND_PS = "/bin/ps";
-    const COMMAND_KILL = "/bin/kill";
+    const COMMAND_PS = '/bin/ps';
+    const COMMAND_KILL = '/bin/kill';
 
     ///////////////////////////////////////////////////////////////////////////////
     // M E T H O D S
@@ -117,13 +117,9 @@ class Process_Manager extends Engine
     {
         clearos_profile(__METHOD__, __LINE__);
 
-        try {
-            $shell = new Shell();
-            $shell->execute(self::COMMAND_PS, "-eo pid,user,time,%cpu,%mem,sz,tty,ucomm,command");
-            $output = $shell->get_output();
-        } catch (Engine_Exception $e) {
-            throw new Engine_Exception($e->get_message(), CLEAROS_ERROR);
-        }
+        $shell = new Shell();
+        $shell->execute(self::COMMAND_PS, '-eo pid,user,time,%cpu,%mem,sz,tty,ucomm,command');
+        $output = $shell->get_output();
 
         return $output;
     }
@@ -141,13 +137,12 @@ class Process_Manager extends Engine
     {
         clearos_profile(__METHOD__, __LINE__);
 
-        try {
-            $shell = new Shell();
+        $shell = new Shell();
 
-            foreach ($pids as $pid)
-                $shell->execute(self::COMMAND_KILL, $pid, TRUE);
-        } catch (Engine_Exception $e) {
-            throw new Engine_Exception($e->get_message(), CLEAROS_ERROR);
-        }
+        if (! is_array($pids))
+            $pids = array($pids);
+
+        foreach ($pids as $pid)
+            $shell->execute(self::COMMAND_KILL, $pid, TRUE);
     }
 }
