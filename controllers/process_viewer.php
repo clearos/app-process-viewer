@@ -124,33 +124,4 @@ class Process_Viewer extends ClearOS_Controller
 
         $this->page->view_confirm_delete($confirm_uri, $cancel_uri, $items);
     }
-
-    /**
-     * Raw process data used in Ajax.
-     *
-     * @return view
-     */
-
-    function get_data()
-    {
-        // Load libraries
-        //---------------
-
-        $this->load->library('process_viewer/Process_Manager');
-
-        // Load view data
-        //---------------
-
-        try {
-            $data['processes'] = $this->process_manager->get_raw_data();
-        } catch (Engine_Exception $e) {
-            $this->page->view_exception($e->get_message());
-            return;
-        }
-
-        // Load views
-        //-----------
-
-        $this->load->view('processes/get_data', $data);
-    }
 }
