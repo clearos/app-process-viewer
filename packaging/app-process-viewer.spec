@@ -1,7 +1,7 @@
 
 Name: app-process-viewer
 Epoch: 1
-Version: 1.0.10
+Version: 1.1.0
 Release: 1%{dist}
 Summary: Process Viewer
 License: GPLv3
@@ -15,7 +15,7 @@ Requires: app-base
 Tabular display of all programs (processes) running on the server.  Specific information on each process is listed, including process ID (PID), running time, CPU and memory usage and owner.
 
 %package core
-Summary: Process Viewer - APIs and install
+Summary: Process Viewer - Core
 License: LGPLv3
 Group: ClearOS/Libraries
 Requires: app-base-core
