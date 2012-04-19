@@ -12,7 +12,7 @@ Requires: %{name}-core = 1:%{version}-%{release}
 Requires: app-base
 
 %description
-Tabular display of all programs (processes) running on the server.  Specific information on each process is listed, including process ID (PID), running time, CPU and memory usage and owner.
+The Process Viewer provides a tabular display of all processes running on the system.  Specific information on each process is listed, including process ID, running time, CPU and memory usage.
 
 %package core
 Summary: Process Viewer - Core
@@ -22,7 +22,7 @@ Requires: app-base-core
 Requires: procps
 
 %description core
-Tabular display of all programs (processes) running on the server.  Specific information on each process is listed, including process ID (PID), running time, CPU and memory usage and owner.
+The Process Viewer provides a tabular display of all processes running on the system.  Specific information on each process is listed, including process ID, running time, CPU and memory usage.
 
 This package provides the core API and libraries.
 
