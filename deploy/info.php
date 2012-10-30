@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 $app['basename'] = 'process_viewer';
-$app['version'] = '1.1.0';
+$app['version'] = '1.4.1';
 $app['release'] = '1';
 $app['vendor'] = 'ClearFoundation';
 $app['packager'] = 'ClearFoundation';
@@ -18,8 +18,8 @@ $app['description'] = lang('process_viewer_app_description');
 /////////////////////////////////////////////////////////////////////////////
 
 $app['name'] = lang('process_viewer_app_name');
-$app['category'] = lang('base_category_system');
-$app['subcategory'] = lang('base_subcategory_resources');
+$app['category'] = lang('base_category_reports');
+$app['subcategory'] = lang('base_category_system');
 
 /////////////////////////////////////////////////////////////////////////////
 // Packaging
