@@ -1,7 +1,7 @@
 
 Name: app-process-viewer
 Epoch: 1
-Version: 1.4.2
+Version: 1.4.6
 Release: 1%{dist}
 Summary: Process Viewer
 License: GPLv3
