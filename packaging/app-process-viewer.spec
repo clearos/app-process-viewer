@@ -1,7 +1,7 @@
 
 Name: app-process-viewer
 Epoch: 1
-Version: 1.4.8
+Version: 1.6.5
 Release: 1%{dist}
 Summary: Process Viewer
 License: GPLv3
@@ -71,7 +71,6 @@ exit 0
 %files core
 %defattr(-,root,root)
 %exclude /usr/clearos/apps/process_viewer/packaging
-%exclude /usr/clearos/apps/process_viewer/tests
 %dir /usr/clearos/apps/process_viewer
 /usr/clearos/apps/process_viewer/deploy
 /usr/clearos/apps/process_viewer/language
