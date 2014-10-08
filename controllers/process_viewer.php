@@ -73,7 +73,7 @@ class Process_Viewer extends ClearOS_Controller
         // Load views
         //-----------
 
-        $options['type'] = 'report';
+        $options['type'] = MY_Page::TYPE_WIDE_CONFIGURATION;
 
         $this->page->view_form('summary', $data, lang('process_viewer_app_name'), $options);
     }
