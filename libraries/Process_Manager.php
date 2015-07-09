@@ -113,6 +113,27 @@ class Process_Manager extends Engine
      * @throws Engine_Exception
      */
 
+    public function get_cpu_summary()
+    {
+        clearos_profile(__METHOD__, __LINE__);
+
+        // Hard code for demo
+        $output = array(
+            array('kavehost', '30'),
+            array('webconfig', '5'),
+            array('mysqld', '10'),
+        );
+
+        return $output;
+    }
+
+    /**
+     * Returns raw output from ps command.
+     *
+     * @return string raw output
+     * @throws Engine_Exception
+     */
+
     public function get_raw_data()
     {
         clearos_profile(__METHOD__, __LINE__);

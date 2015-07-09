@@ -2,6 +2,7 @@
 
 $lang['process_viewer_app_description'] = 'The Process Viewer provides a tabular display of all processes running on the system.  Specific information on each process is listed, including process ID, running time, CPU and memory usage.';
 $lang['process_viewer_app_name'] = 'Process Viewer';
+$lang['process_viewer_cpu_usage'] = 'CPU Usage';
 $lang['process_viewer_command'] = 'Command';
 $lang['process_viewer_cpu'] = 'CPU';
 $lang['process_viewer_id'] = 'ID';
