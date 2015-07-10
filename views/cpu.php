@@ -40,4 +40,8 @@ $this->lang->load('process_viewer');
 // Chart
 ///////////////////////////////////////////////////////////////////////////////
 
-echo chart_container(lang('process_viewer_cpu_usage'), 'process_viewer_cpu_usage');
+$options['action'] = button_set(
+    array(anchor_custom('/app/process_viewer', lang('process_viewer_app_name')))
+);
+
+echo chart_container(lang('process_viewer_cpu_usage'), 'process_viewer_cpu_usage', $options);

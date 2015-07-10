@@ -94,7 +94,9 @@ function create_process_viewer_cpu_usage_chart(data) {
     data_types = Array('string', 'int');
 
     options = Array();
-    options.baseline_data_points = 30; /* FIXME: place holder for pie options */
+    options.series_threshold = 8;
+    options.series_sum_above_threshold = true;
+    options.series_label_threshold = 0.05;
 
     clearos_chart(
         'process_viewer_cpu_usage',

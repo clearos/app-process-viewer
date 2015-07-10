@@ -117,14 +117,38 @@ class Process_Manager extends Engine
     {
         clearos_profile(__METHOD__, __LINE__);
 
-        // Hard code for demo
-        $output = array(
-            array('kavehost', '30'),
-            array('webconfig', '5'),
-            array('mysqld', '10'),
-        );
+        $raw_data = $this->get_raw_data();
+        array_shift($raw_data);
 
-        return $output;
+        $summary = array();
+
+        foreach ($raw_data as $line) {
+            $items = preg_split('/\s+/', trim($line), 9);
+            $process = preg_replace('/\/.*/', '', $items[7]);
+
+            if (isset($summary[$process])) {
+                $summary[$process] += (float)($items[3]);
+            } else {
+                $summary[$process] = (float)($items[3]);
+            }
+        }
+
+        // Sort by value
+        $sort_summary = array();
+
+        foreach ($summary as $process => $total)
+            $sort_summary[$process] = $total;
+
+        array_multisort($sort_summary, SORT_DESC, $summary);
+
+        // Throw out 0 values, and put in standard data format (database row-like)
+        $clean_summary = array();
+        foreach ($sort_summary as $process => $total) {
+            if ($total > 0)
+                $clean_summary[] = array($process, $total);
+        }
+
+        return $clean_summary;
     }
 
     /**
