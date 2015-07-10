@@ -107,9 +107,9 @@ class Process_Manager extends Engine
     }
 
     /**
-     * Returns raw output from ps command.
+     * Returns CPU summary information.
      *
-     * @return string raw output
+     * @return array CPU summary information
      * @throws Engine_Exception
      */
 
@@ -117,38 +117,21 @@ class Process_Manager extends Engine
     {
         clearos_profile(__METHOD__, __LINE__);
 
-        $raw_data = $this->get_raw_data();
-        array_shift($raw_data);
+        return $this->_get_summary('cpu');
+    }
 
-        $summary = array();
+    /**
+     * Returns memory summary information.
+     *
+     * @return array memory summary information
+     * @throws Engine_Exception
+     */
 
-        foreach ($raw_data as $line) {
-            $items = preg_split('/\s+/', trim($line), 9);
-            $process = preg_replace('/\/.*/', '', $items[7]);
+    public function get_memory_summary()
+    {
+        clearos_profile(__METHOD__, __LINE__);
 
-            if (isset($summary[$process])) {
-                $summary[$process] += (float)($items[3]);
-            } else {
-                $summary[$process] = (float)($items[3]);
-            }
-        }
-
-        // Sort by value
-        $sort_summary = array();
-
-        foreach ($summary as $process => $total)
-            $sort_summary[$process] = $total;
-
-        array_multisort($sort_summary, SORT_DESC, $summary);
-
-        // Throw out 0 values, and put in standard data format (database row-like)
-        $clean_summary = array();
-        foreach ($sort_summary as $process => $total) {
-            if ($total > 0)
-                $clean_summary[] = array($process, $total);
-        }
-
-        return $clean_summary;
+        return $this->_get_summary('memory');
     }
 
     /**
@@ -189,5 +172,58 @@ class Process_Manager extends Engine
 
         foreach ($pids as $pid)
             $shell->execute(self::COMMAND_KILL, $pid, TRUE);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // P R I V A T E  M E T H O D S
+    ///////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Returns summary data.
+     *
+     * @return array summary data
+     * @throws Engine_Exception
+     */
+
+    private function _get_summary($type)
+    {
+        clearos_profile(__METHOD__, __LINE__);
+
+        if ($type === 'cpu')
+            $column_number = 3;
+        elseif ($type === 'memory')
+            $column_number = 4;
+
+        $raw_data = $this->get_raw_data();
+        array_shift($raw_data);
+
+        $summary = array();
+
+        foreach ($raw_data as $line) {
+            $items = preg_split('/\s+/', trim($line), 9);
+            $process = preg_replace('/\/.*/', '', $items[7]);
+
+            if (isset($summary[$process]))
+                $summary[$process] += (float)($items[$column_number]);
+            else
+                $summary[$process] = (float)($items[$column_number]);
+        }
+
+        // Sort by value
+        $sort_summary = array();
+
+        foreach ($summary as $process => $total)
+            $sort_summary[$process] = $total;
+
+        array_multisort($sort_summary, SORT_DESC, $summary);
+
+        // Throw out 0 values, and put in standard data format (database row-like)
+        $clean_summary = array();
+        foreach ($sort_summary as $process => $total) {
+            if ($total > 0)
+                $clean_summary[] = array($process, $total);
+        }
+
+        return $clean_summary;
     }
 }

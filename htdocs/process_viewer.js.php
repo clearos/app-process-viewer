@@ -56,30 +56,45 @@ $(document).ready(function() {
     //-------------
 
     lang_cpu_usage = '<?php echo lang("process_viewer_cpu_usage"); ?>';
+    lang_memory_usage = '<?php echo lang("process_viewer_memory_usage"); ?>';
     lang_process = '<?php echo lang("process_viewer_process"); ?>';
 
     // Main
     //-----
 
     if ($('#process_viewer_cpu_usage').length != 0) 
-        generate_process_viewer_cpu_usage();
+        generate_process_viewer_chart('cpu');
+
+    if ($('#process_viewer_memory_usage').length != 0) 
+        generate_process_viewer_chart('memory');
 });
 
 /**
  * Ajax call for dashboard report.
  */
 
-function generate_process_viewer_cpu_usage() {
+function generate_process_viewer_chart(type) {
+    if (type == 'cpu')
+        url = 'process_viewer_cpu';
+    else
+        url = 'process_viewer_memory';
+
     $.ajax({
-        url: '/app/process_viewer/process_viewer_dashboard/get_data',
+        url: '/app/process_viewer/' + url + '/get_data',
         method: 'GET',
         dataType: 'json',
         success : function(data) {
-            create_process_viewer_cpu_usage_chart(data);
-            window.setTimeout(generate_process_viewer_cpu_usage, 3000);
+            create_process_viewer_chart(type, data);
+            if (type == 'cpu')
+                window.setTimeout('generate_process_viewer_chart("cpu")', 3000);
+            else
+                window.setTimeout('generate_process_viewer_chart("memory")', 3000);
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-            window.setTimeout(generate_process_viewer_cpu_usage, 10000);
+            if (type == 'cpu')
+                window.setTimeout('generate_process_viewer_chart("cpu")', 10000);
+            else
+                window.setTimeout('generate_process_viewer_chart("memory")', 10000);
         }
     });
 }
@@ -88,9 +103,16 @@ function generate_process_viewer_cpu_usage() {
  * Generates dashboard report.
  */
 
-function create_process_viewer_cpu_usage_chart(data) {
+function create_process_viewer_chart(type, data) {
 
-    data_titles = Array(lang_process, lang_cpu_usage);
+    if (type == 'cpu') {
+        data_titles = Array(lang_process, lang_cpu_usage);
+        chart_id = 'process_viewer_cpu_usage';
+    } else {
+        data_titles = Array(lang_process, lang_memory_usage);
+        chart_id = 'process_viewer_memory_usage';
+    }
+
     data_types = Array('string', 'int');
 
     options = Array();
@@ -99,7 +121,7 @@ function create_process_viewer_cpu_usage_chart(data) {
     options.series_label_threshold = 0.05;
 
     clearos_chart(
-        'process_viewer_cpu_usage',
+        chart_id,
         'pie',
         data,
         data_titles,

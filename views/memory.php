@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Process viewer CPU summary.
+ * Process viewer memory summary.
  *
  * @category   apps
  * @package    process-viewer
@@ -44,4 +44,4 @@ $options['action'] = button_set(
     array(anchor_custom('/app/process_viewer', lang('process_viewer_app_name')))
 );
 
-echo chart_container(lang('process_viewer_process_cpu_usage'), 'process_viewer_cpu_usage', $options);
+echo chart_container(lang('process_viewer_process_memory_usage'), 'process_viewer_memory_usage', $options);

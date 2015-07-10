@@ -45,7 +45,7 @@
  * @link       http://www.clearfoundation.com/docs/developer/apps/process_viewer/
  */
 
-class Process_Viewer_Dashboard extends ClearOS_Controller
+class Process_Viewer_CPU extends ClearOS_Controller
 {
     /**
      * Default controller.
@@ -63,7 +63,7 @@ class Process_Viewer_Dashboard extends ClearOS_Controller
         // Load views
         //-----------
 
-        $this->page->view_form('process_viewer/cpu', $data, lang('process_viewer_cpu_usage'));
+        $this->page->view_form('process_viewer/cpu', $data, lang('process_viewer_process_cpu_usage'));
     }
 
     /**

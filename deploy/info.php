@@ -27,8 +27,12 @@ $app['subcategory'] = lang('base_subcategory_performance_and_resources');
 
 $app['dashboard_widgets'] = array(
     $app['category'] => array(
-        'process_viewer/process_viewer_dashboard/summary' => array(
-            'title' => lang('process_viewer_cpu_usage'),
+        'process_viewer/process_viewer_cpu/summary' => array(
+            'title' => lang('process_viewer_process_cpu_usage'),
+            'restricted' => TRUE,
+        ),
+        'process_viewer/process_viewer_memory/summary' => array(
+            'title' => lang('process_viewer_process_memory_usage'),
             'restricted' => TRUE,
         )
     )
