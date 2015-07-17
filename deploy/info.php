@@ -45,3 +45,7 @@ $app['dashboard_widgets'] = array(
 $app['core_requires'] = array(
     'procps',
 );
+
+$app['delete_dependency'] = array(
+    'app-process-viewer-core',
+);
