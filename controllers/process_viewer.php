@@ -53,7 +53,7 @@ class Process_Viewer extends ClearOS_Controller
      * @return view
      */
 
-    function index()
+    function index($type = MY_Page::TYPE_CONFIGURATION)
     {
         // Load libraries
         //---------------
@@ -73,7 +73,9 @@ class Process_Viewer extends ClearOS_Controller
         // Load views
         //-----------
 
-        $options['type'] = MY_Page::TYPE_WIDE_CONFIGURATION;
+        $options['type'] = $type;
+
+        $data['form_type'] = $type;
 
         $this->page->view_form('summary', $data, lang('process_viewer_app_name'), $options);
     }

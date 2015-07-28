@@ -1,7 +1,7 @@
 
 Name: app-process-viewer
 Epoch: 1
-Version: 2.1.8
+Version: 2.1.9
 Release: 1%{dist}
 Summary: Process Viewer
 License: GPLv3
@@ -47,6 +47,8 @@ fi
 
 [ -x /usr/clearos/apps/process_viewer/deploy/upgrade ] && /usr/clearos/apps/process_viewer/deploy/upgrade
 
+
+
 exit 0
 
 %preun
@@ -59,6 +61,8 @@ if [ $1 -eq 0 ]; then
     logger -p local6.notice -t installer 'app-process-viewer-core - uninstalling'
     [ -x /usr/clearos/apps/process_viewer/deploy/uninstall ] && /usr/clearos/apps/process_viewer/deploy/uninstall
 fi
+
+
 
 exit 0
 

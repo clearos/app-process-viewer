@@ -47,7 +47,14 @@ $headers = array(
 // Anchors 
 ///////////////////////////////////////////////////////////////////////////////
 
-$anchors = array();
+if ($form_type == MY_Page::TYPE_CONFIGURATION)
+    $anchors = array(
+        anchor_custom('/app/process_viewer/index/' . MY_Page::TYPE_WIDE_CONFIGURATION, lang('base_detailed_view'))
+    );
+else
+    $anchors = array(
+        anchor_custom('/app/process_viewer', lang('base_default'))
+    );
 
 ///////////////////////////////////////////////////////////////////////////////
 // Items
@@ -81,7 +88,11 @@ sort($items);
 // Summary table
 ///////////////////////////////////////////////////////////////////////////////
 
-$options['default_rows'] = 500;
+$options = array(
+    'id' => 'process_view_summary',
+    'default_rows' => 500,
+    'responsive' => ($form_type == MY_Page::TYPE_CONFIGURATION ? array(0 => 'none', 1 => 'none', 5 => 'none') : NULL)
+);
 
 echo summary_table(
     lang('process_viewer_processes'),
