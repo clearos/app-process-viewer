@@ -1,11 +1,13 @@
 
 Name: app-process-viewer
 Epoch: 1
-Version: 2.3.22
+Version: 2.5.0
 Release: 1%{dist}
 Summary: Process Viewer
 License: GPLv3
-Group: ClearOS/Apps
+Group: Applications/Apps
+Packager: ClearFoundation
+Vendor: ClearFoundation
 Source: %{name}-%{version}.tar.gz
 Buildarch: noarch
 Requires: %{name}-core = 1:%{version}-%{release}
@@ -15,9 +17,9 @@ Requires: app-base
 The Process Viewer provides a tabular display of all processes running on the system.  Specific information on each process is listed, including process ID, running time, CPU and memory usage.
 
 %package core
-Summary: Process Viewer - Core
+Summary: Process Viewer - API
 License: LGPLv3
-Group: ClearOS/Libraries
+Group: Applications/API
 Requires: app-base-core
 Requires: procps
 
